@@ -1,0 +1,73 @@
+<start> ::= <FAA> <LASTW> <LAST> <C> <ACTIVEW> <ACTIVE> <FAD> 
+
+<last> ::= <gameID> <drawID> <drawTime> <status> <drawBreak> <visualDraw> <PPW> <pricePoints> <WNW> <winningNumbers> <prizeCatW> <prizeCat> <WSW> <wagerStatistics> <FAD>
+
+<active> ::= <gameID> <drawID> <drawTime> <status> <drawBreak> <visualDraw> <PPW> <pricePoints> <prizeCatW> <prizeCat> <WSW> <wagerStatistics> <FAD>
+
+<winningNumbers> ::= <listW> <list> <bonusW> <bonus> <FAD> <C>
+
+<listW> ::= <word> <AT> <AAA>
+
+<bonusW> ::= <word> <AT> <AAA>
+
+<prizeCatW> ::= <word> <AT> <AAA> <FAA>
+
+<prizeCat> ::= <prizeCategories1> <FAD> <C> <Parray> <ADA> <C>
+
+<Parray> ::= <FAA> <prizeCategories> <FAD> | <FAA> <prizeCategories> <FAD> <C> <Parray>
+
+<prizeCategories> ::= <id> <divident> <winners> <distributed> <jackpot> <fixed> <categoryType> <gameType>
+
+<prizeCategories1> ::= <prizeCategories> <C> <minimumDistributed>
+
+<wagerStatistics> ::= <columns> <wagers> <addOn> <FAD>
+
+<addOnAR> ::= <word> | <posI> | <negI> | <negR> | <posR>
+
+<gameID> ::= <word> <AT> <posI> <C>
+<drawID> ::= <word> <AT> <posI> <C>
+<drawTime> ::= <word> <AT> <posI> <C>
+<drawBreak> ::= <word> <AT> <posI> <C>
+<visualDraw> ::= <word> <AT> <posI> <C>
+<columns> ::= <word> <AT> <posI> <C>
+<wagers> ::= <word> <AT> <posI> <C>
+<winners> ::= <word> <AT> <posI> <C>
+<posI> ::= (0-9)+
+<categoryType> ::= <word> <AT> <posI> <C>
+<status> ::= <word> <AT> <word> <C>                      
+<gameType> ::= <word> <AT> <word>
+<word> ::= '"' (\\.|(^"\\))* '"'
+<id> ::= <word> <AT> <posI> <C>
+<pricePoints> ::= <amount> <FAD> <C>
+<list> ::= <larray> <ADA> <C>
+<larray> ::= <posI> | <posI> <C> <larray>
+<bonus> ::= <posI> <ADA>
+<amount> ::= <word> <AT> <posR>
+<divident> ::= <word> <AT> <posR> <C>
+<distributed> ::= <word> <AT> <posR> <C>
+<jackpot> ::= <word> <AT> <posR> <C>
+<fixed> ::= <word> <AT> <posR> <C>
+<minimumDistributed> ::= <word> <AT> <posR>
+<posR> ::= (0-9)+.(0-9)+
+<addOn> ::= <word> <AT> <AAA> <addOnEXP> <ADA> | <word> <AT> <AAA> <ADA>     
+<negI> ::= -(0-9)+ 
+<negR> ::= -(0-9)+.(0-9)+
+<PPW> ::= <word> <AT> <FAA> 
+<WNW> ::= <word> <AT> <FAA>
+<WSW> ::= <word> <AT> <FAA>
+<activeW> ::= <word> <AT> <FAA>
+<lastw> ::= <WORD> <AT> <FAA>
+<addOnEXP> ::= <addOnAR> | <addOnAR> <C> <addOnEXP>
+<addOnAR> ::= <word> | <posI> | <negI> | <negR> | <posR> 
+<C> ::= ","
+<FAA> ::= "{"
+<FAD> ::= "}"
+<AT> ::= ":"
+<AAA> ::= "["
+<ADA> ::= "]"
+
+/////Επιπρόσθετοι κανόνες που δεν συνδέονται άμεσα με το BNF :
+/////	\n {}
+/////	[ \t]+ /*ignore whitespace*/
+/////	. { yyerror("Undefined symbol"); exit(1); } 
+ 
